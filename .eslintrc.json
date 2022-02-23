@@ -22,6 +22,7 @@
     "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "prettier/prettier": "error",
+      "indent": [ "error", 2 ],
       "semi": [1, "always"]
     }
 
