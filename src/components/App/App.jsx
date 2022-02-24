@@ -1,10 +1,11 @@
 import React from 'react';
 import GlobalStyle from '../../styles/global';
+import { Sidebar } from '../Sidebar';
 
-export function App () {
+export function App() {
   return (
     <>
-      <h1>XP Investiment</h1>
+      <Sidebar />
       <GlobalStyle />
     </>
   );
