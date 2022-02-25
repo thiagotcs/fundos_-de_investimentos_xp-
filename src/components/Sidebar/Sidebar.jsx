@@ -1,6 +1,8 @@
 import React from 'react';
-import { Wrapper, Topo } from './styles';
 import logo from '../../assets/logo-xpi.svg';
+import { MenuItems } from './MenuItems';
+import { menuItems } from './menuItems';
+import { Wrapper, Topo, Ul } from './styles';
 
 export function Sidebar() {
   return (
@@ -10,6 +12,13 @@ export function Sidebar() {
           <h1>Investimentos</h1>
           <img src={logo} alt="Logo XP" />
         </Topo>
+        <nav>
+          <Ul>
+            {menuItems.map((menu, index) => {
+              return <MenuItems items={menu} key={index} />;
+            })}
+          </Ul>
+        </nav>
       </Wrapper>
     </>
   );
