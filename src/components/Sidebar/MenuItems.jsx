@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown } from './Dropdown';
-// import { Wrapper, Topo, Ul } from './styles';
 
 export function MenuItems({ items }) {
   const [dropdown, setDropdown] = useState(false);

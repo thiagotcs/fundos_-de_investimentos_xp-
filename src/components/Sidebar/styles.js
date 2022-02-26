@@ -5,7 +5,6 @@ export const Wrapper = styled.aside`
   background-color: #121212;
   overflow-x: hidden;
   padding: 24px 32px;
-  position: fixed;
   top: 0;
   color: #fff;
 `;
@@ -21,6 +20,7 @@ export const Topo = styled.section`
   }
   img {
     width: 39px;
+    height: 39px;
     margin-right: 18px;
   }
 `;
@@ -70,7 +70,8 @@ export const Ul = styled.ul`
       }
       svg {
         margin-right: 10px;
-        font-size: 20px;
+        width: 20px;
+        height: 20px;
 
         & + svg {
           font-size: 25px;
