@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FiSearch } from 'react-icons/fi';
 import { AppButton } from '../AppButton/AppButton';
 import { AppInput } from '../AppInput/AppInput';
 import { TransactionsTable } from '../TransactionsTable';
 import { Wrapper, Topo, Content } from './styles';
 
-export function AppContainer() {
+export function AppContainer({ onOpenSideSheet, onOpenSideSheetEdit }) {
   return (
     <Wrapper>
       <Topo>
@@ -23,11 +24,19 @@ export function AppContainer() {
       <Content>
         <AppInput type="text" placeholder="Buscar..." icon={FiSearch} />
         <div>
-          <AppButton type="button">Simular aporte</AppButton>
-          <AppButton type="button">Alterar regra para aporte</AppButton>
+          <AppButton type="button" onClick={onOpenSideSheet}>
+            Simular aporte
+          </AppButton>
+          <AppButton type="button" onClick={onOpenSideSheetEdit}>
+            Alterar regra para aporte
+          </AppButton>
         </div>
       </Content>
       <TransactionsTable />
     </Wrapper>
   );
 }
+AppContainer.propTypes = {
+  onOpenSideSheet: PropTypes.func,
+  onOpenSideSheetEdit: PropTypes.func,
+};

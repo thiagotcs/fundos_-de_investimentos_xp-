@@ -14,5 +14,5 @@ export function AppInput({ icon: Icon, ...rest }) {
 
 AppInput.propTypes = {
   name: PropTypes.string,
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.func,
 };
