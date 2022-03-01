@@ -4,6 +4,7 @@ import { AppContainer } from '../AppContainer/AppContainer';
 import { AppSideSheet } from '../AppSideSheet/AppSideSheet';
 import { Sidebar } from '../Sidebar';
 import { Wrapper } from './styles';
+import '../mocks';
 export function App() {
   const [openSideSheet, setOpenSideSheet] = useState(false);
   const [openSideSheetEdit, setOpenSideSheetEdit] = useState(false);

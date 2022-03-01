@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { api } from '../../services/api';
 import { Wrapper } from './styles';
 
 export function TransactionsTable() {
+  const [transactions, setTransactions] = useState([]);
+  useEffect(() => {
+    api
+      .get('transactions')
+      .then((response) => setTransactions(response.data.transactions));
+  }, []);
+
   return (
     <Wrapper>
       <table>
@@ -15,27 +23,29 @@ export function TransactionsTable() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>TICK1</td>
-            <td>Ação XPTO 01</td>
-            <td>R$ 21,00</td>
-            <td>45%</td>
-            <td>R$ 22.500.000,00</td>
-          </tr>
-          <tr>
-            <td>TICK2</td>
-            <td>Ação XPTO 02</td>
-            <td>R$ 12,00</td>
-            <td>25%</td>
-            <td>R$ 12.500.000,00</td>
-          </tr>
-          <tr>
-            <td>TICK3</td>
-            <td>Ação XPTO 03</td>
-            <td>R$ 50,00</td>
-            <td>30%</td>
-            <td>R$ 15.000.000,00</td>
-          </tr>
+          {transactions.map((transaction) => (
+            <tr key={transaction.id}>
+              <td>{transaction.ticker}</td>
+              <td>{transaction.name}</td>
+              <td>
+                {new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(transaction.cost)}
+              </td>
+              <td>
+                {new Intl.NumberFormat('pt-BR', {
+                  style: 'percent',
+                }).format(transaction.percents / 100)}
+              </td>
+              <td>
+                {new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(transaction.price)}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </Wrapper>
