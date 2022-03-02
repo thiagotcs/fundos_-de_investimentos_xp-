@@ -1,32 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SideSheet from 'react-side-sheet';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppButton } from '../AppButton/AppButton';
 import { AppInput } from '../AppInput/AppInput';
+import {
+  closeSideSheet,
+  closeSideSheetEdit,
+  selectSideSheet,
+} from '../../store/transactionsSlice';
 import { Container, Content, DistributionContainer } from './styles';
 
-export function AppSideSheet({
-  isOpen,
-  isOpenEdit,
-  onCloseSideSheet,
-  onCloseSideSheetEdit,
-}) {
-  console.log('🚀 isOpen', isOpen);
-  console.log('🚀 isOpenEdit', isOpenEdit);
-  console.log('🚀 onCloseSideSheet', onCloseSideSheet);
-  console.log('🚀 onCloseSideSheetEdit', onCloseSideSheetEdit);
+export function AppSideSheet() {
+  const { changeSideSheet, changeSideSheetEdit } = useSelector(selectSideSheet);
+  const dispatch = useDispatch();
+  const handleCloseSideSheet = () => dispatch(closeSideSheet());
+  const handleCloseSideSheetEdit = () => dispatch(closeSideSheetEdit());
 
   return (
     <SideSheet
-      isOpen={[isOpen, isOpenEdit]}
-      onDismiss={[onCloseSideSheet, onCloseSideSheetEdit]}
+      isOpen={[changeSideSheet, changeSideSheetEdit]}
+      onDismiss={[handleCloseSideSheet, closeSideSheetEdit]}
     >
-      {isOpenEdit && (
+      {changeSideSheetEdit && (
         <Container>
           <button
             type="button"
-            onClick={onCloseSideSheetEdit}
+            onClick={handleCloseSideSheetEdit}
             className="sideSheetClose"
           >
             X
@@ -65,7 +65,7 @@ export function AppSideSheet({
               </div>
             </section>
             <div className="sideSheetButton">
-              <AppButton type="button" onClick={onCloseSideSheetEdit}>
+              <AppButton type="button" onClick={handleCloseSideSheetEdit}>
                 Cancelar
               </AppButton>
               <AppButton type="button">Salvar</AppButton>
@@ -73,11 +73,11 @@ export function AppSideSheet({
           </DistributionContainer>
         </Container>
       )}
-      {isOpen && (
+      {changeSideSheet && (
         <Content>
           <button
             type="button"
-            onClick={onCloseSideSheet}
+            onClick={handleCloseSideSheet}
             className="sideSheetClose"
           >
             X
@@ -123,9 +123,3 @@ export function AppSideSheet({
     </SideSheet>
   );
 }
-AppSideSheet.propTypes = {
-  isOpen: PropTypes.bool,
-  isOpenEdit: PropTypes.bool,
-  onCloseSideSheet: PropTypes.func,
-  onCloseSideSheetEdit: PropTypes.func,
-};

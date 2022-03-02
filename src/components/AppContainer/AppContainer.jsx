@@ -1,12 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { FiSearch } from 'react-icons/fi';
 import { AppButton } from '../AppButton/AppButton';
 import { AppInput } from '../AppInput/AppInput';
 import { TransactionsTable } from '../TransactionsTable';
 import { Wrapper, Topo, Content } from './styles';
+import {
+  openSideSheet,
+  openSideSheetEdit,
+} from '../../store/transactionsSlice';
 
-export function AppContainer({ onOpenSideSheet, onOpenSideSheetEdit }) {
+export function AppContainer() {
+  const dispatch = useDispatch();
+  const handleOpenSideSheet = () => dispatch(openSideSheet());
+  const handleopenSideSheetEdit = () => dispatch(openSideSheetEdit());
+
   return (
     <Wrapper>
       <Topo>
@@ -24,10 +32,10 @@ export function AppContainer({ onOpenSideSheet, onOpenSideSheetEdit }) {
       <Content>
         <AppInput type="text" placeholder="Buscar..." icon={FiSearch} />
         <div>
-          <AppButton type="button" onClick={onOpenSideSheet}>
+          <AppButton type="button" onClick={handleOpenSideSheet}>
             Simular aporte
           </AppButton>
-          <AppButton type="button" onClick={onOpenSideSheetEdit}>
+          <AppButton type="button" onClick={handleopenSideSheetEdit}>
             Alterar regra para aporte
           </AppButton>
         </div>
@@ -36,7 +44,3 @@ export function AppContainer({ onOpenSideSheet, onOpenSideSheetEdit }) {
     </Wrapper>
   );
 }
-AppContainer.propTypes = {
-  onOpenSideSheet: PropTypes.func,
-  onOpenSideSheetEdit: PropTypes.func,
-};

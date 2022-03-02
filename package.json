@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.0",
+    "redux": "^4.1.2",
+    "react-redux": "^7.2.6",
     "axios": "^0.26.0",
     "miragejs": "^0.1.43",
     "prop-types": "^15.8.1",
