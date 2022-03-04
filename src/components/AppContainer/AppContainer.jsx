@@ -8,7 +8,7 @@ import { Wrapper, Topo, Content } from './styles';
 import {
   openSideSheet,
   openSideSheetEdit,
-} from '../../features/SideSheet/sideSheetSlice';
+} from '../../features/sideSheet/sideSheetSlice';
 
 export function AppContainer() {
   const [search, setSearch] = useState('');
