@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../../services/api';
+import { Loader } from '../Loader/Loader';
 import { Wrapper } from './styles';
 
 export function TransactionsTable() {
@@ -12,6 +13,7 @@ export function TransactionsTable() {
 
   return (
     <Wrapper>
+      {transactions.length < 1 && <Loader />}
       <table>
         <thead>
           <tr>

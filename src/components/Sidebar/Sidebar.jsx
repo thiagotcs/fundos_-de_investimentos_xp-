@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo-xpi.svg';
+import logo from '../../assets/img/logo-xpi.svg';
 import { MenuItems } from './MenuItems';
 import { menuItems } from './menuItems';
 import { Wrapper, Topo, Ul } from './styles';
