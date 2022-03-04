@@ -4,12 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppButton } from '../AppButton/AppButton';
 import { AppInput } from '../AppInput/AppInput';
+// import {
+//   closeSideSheet,
+//   closeSideSheetEdit,
+//   selectSideSheet,
+// } from '../../store/transactionsSlice';
+import { Container, Content, DistributionContainer } from './styles';
 import {
   closeSideSheet,
   closeSideSheetEdit,
   selectSideSheet,
-} from '../../store/transactionsSlice';
-import { Container, Content, DistributionContainer } from './styles';
+} from '../../features/SideSheet/sideSheetSlice';
 
 export function AppSideSheet() {
   const { changeSideSheet, changeSideSheetEdit } = useSelector(selectSideSheet);

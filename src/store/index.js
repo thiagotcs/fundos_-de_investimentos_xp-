@@ -1,8 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import useReducer from './transactionsSlice';
+import rootReducer from './rootReducer';
 
 export default configureStore({
-  reducer: {
-    sideSheet: useReducer,
-  },
+  reducer: rootReducer,
 });

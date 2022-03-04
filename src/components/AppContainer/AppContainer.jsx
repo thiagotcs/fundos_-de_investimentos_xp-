@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FiSearch } from 'react-icons/fi';
 import { AppButton } from '../AppButton/AppButton';
@@ -8,9 +8,14 @@ import { Wrapper, Topo, Content } from './styles';
 import {
   openSideSheet,
   openSideSheetEdit,
-} from '../../store/transactionsSlice';
+} from '../../features/SideSheet/sideSheetSlice';
 
 export function AppContainer() {
+  const [search, setSearch] = useState('');
+  console.log(
+    '🚀 ~ file: AppContainer.jsx ~ line 15 ~ AppContainer ~ search',
+    search
+  );
   const dispatch = useDispatch();
   const handleOpenSideSheet = () => dispatch(openSideSheet());
   const handleopenSideSheetEdit = () => dispatch(openSideSheetEdit());
@@ -30,7 +35,13 @@ export function AppContainer() {
         </p>
       </Topo>
       <Content>
-        <AppInput type="text" placeholder="Buscar..." icon={FiSearch} />
+        <AppInput
+          type="text"
+          placeholder="Buscar..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          icon={FiSearch}
+        />
         <div>
           <AppButton type="button" onClick={handleOpenSideSheet}>
             Simular aporte
