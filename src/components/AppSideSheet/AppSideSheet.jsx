@@ -2,8 +2,8 @@ import React from 'react';
 import SideSheet from 'react-side-sheet';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppButton } from '../AppButton/AppButton';
-import { AppInput } from '../AppInput/AppInput';
+import { AppButton } from '../AppButton';
+import { AppInput } from '../AppInput';
 import { Container, Content, DistributionContainer } from './styles';
 import {
   closeSideSheet,

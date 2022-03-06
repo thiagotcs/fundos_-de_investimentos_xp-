@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FiSearch } from 'react-icons/fi';
-import { AppButton } from '../AppButton/AppButton';
-import { AppInput } from '../AppInput/AppInput';
+import { AppButton } from '../AppButton';
+import { AppInput } from '../AppInput';
 import { TransactionsTable } from '../TransactionsTable';
 import { Wrapper, Topo, Content } from './styles';
+import { changeSearch } from '../../features/search/searchSlice';
 import {
   openSideSheet,
   openSideSheetEdit,
@@ -12,13 +13,16 @@ import {
 
 export function AppContainer() {
   const [search, setSearch] = useState('');
-  console.log(
-    '🚀 ~ file: AppContainer.jsx ~ line 15 ~ AppContainer ~ search',
-    search
-  );
+
   const dispatch = useDispatch();
   const handleOpenSideSheet = () => dispatch(openSideSheet());
   const handleopenSideSheetEdit = () => dispatch(openSideSheetEdit());
+
+  const searchDispatch = useDispatch();
+  const handleSearch = (event) => {
+    event.preventDefault();
+    searchDispatch(changeSearch(search));
+  };
 
   return (
     <Wrapper>
@@ -35,13 +39,15 @@ export function AppContainer() {
         </p>
       </Topo>
       <Content>
-        <AppInput
-          type="text"
-          placeholder="Buscar..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          icon={FiSearch}
-        />
+        <form onSubmit={handleSearch}>
+          <AppInput
+            type="text"
+            placeholder="Buscar..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            icon={FiSearch}
+          />
+        </form>
         <div>
           <AppButton type="button" onClick={handleOpenSideSheet}>
             Simular aporte

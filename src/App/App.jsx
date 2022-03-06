@@ -1,7 +1,7 @@
 import React from 'react';
 import GlobalStyle from '../styles/global';
-import { AppContainer } from '../components/AppContainer/AppContainer';
-import { AppSideSheet } from '../components/AppSideSheet/AppSideSheet';
+import { AppContainer } from '../components/AppContainer';
+import { AppSideSheet } from '../components/AppSideSheet';
 import { Sidebar } from '../components/Sidebar';
 import { Wrapper } from './styles';
 import '../mocks';
