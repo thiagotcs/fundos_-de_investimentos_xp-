@@ -1,6 +1,7 @@
 import React from 'react';
 import SideSheet from 'react-side-sheet';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
 import { AppButton } from '../AppButton';
 import { AppInput } from '../AppInput';
@@ -11,11 +12,24 @@ import {
   selectSideSheet,
 } from '../../features/sideSheet/sideSheetSlice';
 
+// const newTransactionFormSchema = yup.object().shape({
+//   email: yup.string().required(),
+// })
+
 export function AppSideSheet() {
   const { changeSideSheet, changeSideSheetEdit } = useSelector(selectSideSheet);
+  const { register, handleSubmit, formState } = useForm({
+    // resolve: yupResolver(newTransactionFormSchema)
+  });
   const dispatch = useDispatch();
   const handleCloseSideSheet = () => dispatch(closeSideSheet());
   const handleCloseSideSheetEdit = () => dispatch(closeSideSheetEdit());
+
+  const { errors } = formState;
+
+  function handleNewTransaction(values) {
+    console.log(values);
+  }
 
   return (
     <SideSheet
@@ -34,42 +48,66 @@ export function AppSideSheet() {
           <h2>Alterar regra para aporte </h2>
           <p>Fundo</p>
           <p>Valor do aporte</p>
-          <section>
-            <div>
-              <AppInput type="number" placeholder="De (R$)" />
-              <AppInput type="number" placeholder="De (R$)" />
-            </div>
-            <div>
-              <AppInput type="number" placeholder="Até (R$)" />
-              <AppInput type="number" placeholder="Até (R$)" />
-            </div>
-          </section>
-          <DistributionContainer>
-            <p>Distribuição dos valores(%)</p>
+          <form onSubmit={handleSubmit(handleNewTransaction)}>
             <section>
               <div>
-                <p>TICK1</p>
-                <AppInput type="text" />
-                <AppInput type="text" />
+                <AppInput
+                  type="number"
+                  name="num1"
+                  placeholder="De (R$)"
+                  {...register('num1')}
+                  error={errors.num1}
+                />
+                <AppInput
+                  type="number"
+                  name="num2"
+                  placeholder="De (R$)"
+                  {...register('num2')}
+                  error={errors.num2}
+                />
               </div>
               <div>
-                <p>TICK2</p>
-                <AppInput type="text" />
-                <AppInput type="text" />
-              </div>
-              <div>
-                <p>TICK3</p>
-                <AppInput type="text" />
-                <AppInput type="text" />
+                <AppInput
+                  type="number"
+                  placeholder="Até (R$)"
+                  {...register('num3')}
+                  error={errors.num3}
+                />
+                <AppInput
+                  type="number"
+                  placeholder="Até (R$)"
+                  {...register('num4')}
+                  error={errors.num4}
+                />
               </div>
             </section>
-            <div className="sideSheetButton">
-              <AppButton type="button" onClick={handleCloseSideSheetEdit}>
-                Cancelar
-              </AppButton>
-              <AppButton type="button">Salvar</AppButton>
-            </div>
-          </DistributionContainer>
+            <DistributionContainer>
+              <p>Distribuição dos valores(%)</p>
+              <section>
+                <div>
+                  <p>TICK1</p>
+                  <AppInput type="text" />
+                  <AppInput type="text" />
+                </div>
+                <div>
+                  <p>TICK2</p>
+                  <AppInput type="text" />
+                  <AppInput type="text" />
+                </div>
+                <div>
+                  <p>TICK3</p>
+                  <AppInput type="text" />
+                  <AppInput type="text" />
+                </div>
+              </section>
+              <div className="sideSheetButton">
+                <AppButton type="button" onClick={handleCloseSideSheetEdit}>
+                  Cancelar
+                </AppButton>
+                <AppButton type="submit">Salvar</AppButton>
+              </div>
+            </DistributionContainer>
+          </form>
         </Container>
       )}
       {changeSideSheet && (
