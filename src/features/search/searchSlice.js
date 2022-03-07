@@ -8,24 +8,28 @@ export const getTransactions = createAsyncThunk('transactions', async () => {
 
 const initialState = {
   transactions: [],
+  transactionsContainer: [],
 };
 
 export const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
-    changeSearch(state) {
-      state.transactions = {};
+    filteredTransactions: (state, action) => {
+      state.transactions = state.transactionsContainer.filter((transaction) =>
+        transaction.name.toLowerCase().includes(action.payload)
+      );
     },
   },
   extraReducers: {
     [getTransactions.fulfilled]: (state, { payload }) => {
       console.log('Fetched Successfully!');
-      return { ...state, transactions: payload };
+      state.transactions = payload;
+      state.transactionsContainer = payload;
     },
   },
 });
 
-export const { changeSearch } = searchSlice.actions;
+export const { changeSearch, filteredTransactions } = searchSlice.actions;
 export const selectSearch = (state) => state.search;
 export default searchSlice.reducer;
