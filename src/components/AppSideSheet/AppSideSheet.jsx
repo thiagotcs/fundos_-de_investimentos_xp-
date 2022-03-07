@@ -2,6 +2,8 @@ import React from 'react';
 import SideSheet from 'react-side-sheet';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { AppButton } from '../AppButton';
 import { AppInput } from '../AppInput';
@@ -12,14 +14,29 @@ import {
   selectSideSheet,
 } from '../../features/sideSheet/sideSheetSlice';
 
-// const newTransactionFormSchema = yup.object().shape({
-//   email: yup.string().required(),
-// })
+const newTransactionFormSchema = yup.object().shape({
+  num1: yup.number().required('Preencha o campo'),
+  num2: yup
+    .number()
+    .oneOf(
+      [null, yup.ref('num1')],
+      'O valor dever ser maior que o valor anterior'
+    )
+    .required('Preencha o campo'),
+  num3: yup
+    .number()
+    .oneOf(
+      [null, yup.ref('num2')],
+      'O valor dever ser maior que o valor anterior'
+    )
+    .required('Preencha o campo'),
+  num4: yup.number().required('Preencha o campo'),
+});
 
 export function AppSideSheet() {
   const { changeSideSheet, changeSideSheetEdit } = useSelector(selectSideSheet);
   const { register, handleSubmit, formState } = useForm({
-    // resolve: yupResolver(newTransactionFormSchema)
+    resolve: yupResolver(newTransactionFormSchema),
   });
   const dispatch = useDispatch();
   const handleCloseSideSheet = () => dispatch(closeSideSheet());
@@ -37,7 +54,7 @@ export function AppSideSheet() {
       onDismiss={[handleCloseSideSheet, closeSideSheetEdit]}
     >
       {changeSideSheetEdit && (
-        <Container>
+        <Container as="form" onSubmit={handleSubmit(handleNewTransaction)}>
           <button
             type="button"
             onClick={handleCloseSideSheetEdit}
@@ -48,66 +65,67 @@ export function AppSideSheet() {
           <h2>Alterar regra para aporte </h2>
           <p>Fundo</p>
           <p>Valor do aporte</p>
-          <form onSubmit={handleSubmit(handleNewTransaction)}>
+
+          <section>
+            <div>
+              <AppInput
+                type="number"
+                name="num1"
+                placeholder="De (R$)"
+                {...register('num1')}
+                error={errors.num1}
+              />
+              <AppInput
+                type="number"
+                name="num2"
+                placeholder="De (R$)"
+                {...register('num2')}
+                error={errors.num2}
+              />
+            </div>
+            <div>
+              <AppInput
+                type="number"
+                name="num3"
+                placeholder="Até (R$)"
+                {...register('num3')}
+                error={errors.num3}
+              />
+              <AppInput
+                type="number"
+                name="num4"
+                placeholder="Até (R$)"
+                {...register('num4')}
+                error={errors.num4}
+              />
+            </div>
+          </section>
+          <DistributionContainer>
+            <p>Distribuição dos valores(%)</p>
             <section>
               <div>
-                <AppInput
-                  type="number"
-                  name="num1"
-                  placeholder="De (R$)"
-                  {...register('num1')}
-                  error={errors.num1}
-                />
-                <AppInput
-                  type="number"
-                  name="num2"
-                  placeholder="De (R$)"
-                  {...register('num2')}
-                  error={errors.num2}
-                />
+                <p>TICK1</p>
+                <AppInput type="text" />
+                <AppInput type="text" />
               </div>
               <div>
-                <AppInput
-                  type="number"
-                  placeholder="Até (R$)"
-                  {...register('num3')}
-                  error={errors.num3}
-                />
-                <AppInput
-                  type="number"
-                  placeholder="Até (R$)"
-                  {...register('num4')}
-                  error={errors.num4}
-                />
+                <p>TICK2</p>
+                <AppInput type="text" />
+                <AppInput type="text" />
+              </div>
+              <div>
+                <p>TICK3</p>
+                <AppInput type="text" />
+                <AppInput type="text" />
               </div>
             </section>
-            <DistributionContainer>
-              <p>Distribuição dos valores(%)</p>
-              <section>
-                <div>
-                  <p>TICK1</p>
-                  <AppInput type="text" />
-                  <AppInput type="text" />
-                </div>
-                <div>
-                  <p>TICK2</p>
-                  <AppInput type="text" />
-                  <AppInput type="text" />
-                </div>
-                <div>
-                  <p>TICK3</p>
-                  <AppInput type="text" />
-                  <AppInput type="text" />
-                </div>
-              </section>
-              <div className="sideSheetButton">
-                <AppButton type="button" onClick={handleCloseSideSheetEdit}>
-                  Cancelar
-                </AppButton>
-                <AppButton type="submit">Salvar</AppButton>
-              </div>
-            </DistributionContainer>
-          </form>
+            <div className="sideSheetButton">
+              <AppButton type="button" onClick={handleCloseSideSheetEdit}>
+                Cancelar
+              </AppButton>
+              <AppButton type="submit">Salvar</AppButton>
+            </div>
+          </DistributionContainer>
         </Container>
       )}
       {changeSideSheet && (
