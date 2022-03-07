@@ -33,7 +33,6 @@ export function AppSideSheet() {
           </button>
           <h2>Alterar regra para aporte </h2>
           <p>Fundo</p>
-          <p>Selection Fundo de investimento</p>
           <p>Valor do aporte</p>
           <section>
             <div>

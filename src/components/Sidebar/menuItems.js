@@ -14,10 +14,10 @@ export const menuItems = [
         title: 'Alterar regra para aporte',
         icon: <AiIcons.AiFillFund />,
       },
-      {
-        title: 'Simular aporte',
-        icon: <RiIcons.RiBarChart2Fill />,
-      },
+      // {
+      //   title: 'Simular aporte',
+      //   icon: <RiIcons.RiBarChart2Fill />,
+      // },
     ],
   },
 ];
