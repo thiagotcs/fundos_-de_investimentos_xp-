@@ -24,20 +24,26 @@
 ## 🛠️ Tecnologias/Ferramentas ultilizadas
 
 - [React](https://pt-br.reactjs.org/E)
+- [Redux ToolKit](https://redux-toolkit.js.org/)
+- [Axios](https://axios-http.com/)
+- [Styled-Components](https://styled-components.com/E)
+- [MirageJS](https://miragejs.com/)
+- [React-Hook-Form](https://react-hook-form.com/)
+- [Yup](https://pt-br.reactjs.org/E)
+- [Jest](https://jestjs.io/pt-BR/)
+- [React-Testing-Library](https://testing-library.com/)
+- [Husky](https://typicode.github.io/husky/#/)
 
 &nbsp;
 
 <a href="https://github.com/thiagotcs/fundos_-de_investimentos_xp-/blob/master/src/assets/img/img2.png" target="_blank">
-    <img alt="investimento xp pagina1" src="https://github.com/thiagotcs/fundos_-de_investimentos_xp-/blob/master/src/assets/img/img2.png">
+    <img alt="investimento xp pagina2" src="https://github.com/thiagotcs/fundos_-de_investimentos_xp-/blob/master/src/assets/img/img2.png">
   </a>
-
-
 
 &nbsp;
 
-
 <a href="https://github.com/thiagotcs/fundos_-de_investimentos_xp-/blob/master/src/assets/img/img3.png" target="_blank">
-    <img alt="investimento xp pagina1" src="https://github.com/thiagotcs/fundos_-de_investimentos_xp-/blob/master/src/assets/img/img3.png">
+    <img alt="investimento xp pagina3" src="https://github.com/thiagotcs/fundos_-de_investimentos_xp-/blob/master/src/assets/img/img3.png">
   </a>
 
 &nbsp;
@@ -46,7 +52,7 @@
 
 ```
 # Abra um terminal e copie este repositório com o comando
-$ git clone https://github.com/thiagotcs/
+$ git clone https://github.com/thiagotcs/fundos_-de_investimentos_xp-.git
 ```
 
 ```
