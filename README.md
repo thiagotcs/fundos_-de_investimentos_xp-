@@ -57,8 +57,7 @@ $ git clone https://github.com/thiagotcs/fundos_de_investimentos_xp.git
 
 ```
 # Acesse a pasta da aplicação
-$ cd xp-investiment
-
+$ cd fundos_de_investimentos_xp
 
 # Instale as dependências
 $ yarn
