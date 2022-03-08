@@ -52,7 +52,7 @@
 
 ```
 # Abra um terminal e copie este repositório com o comando
-$ git clone https://github.com/thiagotcs/fundos_-de_investimentos_xp-.git
+$ git clone https://github.com/thiagotcs/fundos_de_investimentos_xp.git
 ```
 
 ```
